@@ -9,7 +9,7 @@ namespace EmployeeManagement.BusinessLogic
 	 * the HTTP protocol in this class. It is completely independant.
 	 * It implements the neccesary operations for maintaining Employees.
 	 */
-	public class MockEmployeeRepository
+	public class MockEmployeeRepository : IEmployeeRepository
 	{
 		// Initialize a memory storage for our Employees. In real life we will use EFCore. 
 		// We have to pay attention that in real life even such memeory implementation is not good since, several 

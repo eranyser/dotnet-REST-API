@@ -1,3 +1,4 @@
+using EmployeeManagement.BusinessLogic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,9 @@ namespace EmployeeManagement
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			// here we will register our repository for dpandancy injection. 
+			// We are linking here the contrut IEmployeeRepository with concrete implementation
+			services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
 
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
