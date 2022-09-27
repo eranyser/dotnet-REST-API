@@ -1,0 +1,105 @@
+@host = https://localhost:5001
+
+###
+GET {{host}}/api/employee/all
+Accept: application/json
+
+###
+GET {{host}}/api/employee/1
+Accept: application/json
+
+###
+POST {{host}}/api/employee/add
+Content-Type: application/json
+
+{
+    "firstname":"Eran",
+    "laStname": "Weiser",
+    "email":"eran.weiser@gmail.com",
+    "department":"IT"
+}
+
+###
+PUT {{host}}/api/employee/update/1
+Content-Type: application/json
+
+{
+    "firstname":"Eran",
+    "email":"eran.weiser@gmail.com",
+    "department":"R&D"
+}
+
+###
+DELETE {{host}}/api/employee/delete/2
+
+###
+GET {{host}}/api/employee/updateq/2?firstname=Yossi&email=eran@algotec.co.il
+
+
+
+
+###
+GET {{host}}/api/todo-items
+Accept: application/json
+
+###
+GET {{host}}/api/todo-items/0
+Accept: application/json
+
+###
+POST {{host}}/api/todo-items
+Content-Type: application/json
+
+"Watch TV"
+
+###
+PUT {{host}}/api/todo-items/2
+Content-Type: application/json
+
+"Watch Netflix"
+
+###
+DELETE {{host}}/api/todo-items/2
+
+###
+GET {{host}}/api/todo-items/sorted?sortOrder=asc
+Accept: application/json
+
+###
+# ==============================================================================
+GET {{host}}/api/todo-items-advanced
+Accept: application/json
+
+###
+GET {{host}}/api/todo-items-advanced/0
+Accept: application/json
+
+###
+POST {{host}}/api/todo-items-advanced
+Content-Type: application/json
+
+{
+    "description": "Watch TV",
+    "assignedTo": "Me"
+}
+
+###
+POST {{host}}/api/todo-items-advanced
+Content-Type: application/json
+
+{
+    "description": "x",
+    "assignedTo": "Me"
+}
+
+###
+PUT {{host}}/api/todo-items-advanced/2
+Content-Type: application/json
+
+{
+    "description": "Watch Netfix",
+    "assignedTo": "Me"
+}
+
+###
+DELETE {{host}}/api/todo-items-advanced/2
