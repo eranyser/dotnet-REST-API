@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,20 +18,22 @@ namespace EmployeeManagement
 {
 	public class Startup
 	{
+		public IConfiguration _configuration { get; }
+
 		public Startup(IConfiguration configuration)
 		{
-			Configuration = configuration;
+			_configuration = configuration;
 		}
-
-		public IConfiguration Configuration { get; }
 
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddDbContextPool<AppDbContext>(
+					options => options.UseNpgsql(_configuration.GetConnectionString("EmployeeDBConnection")));
 			// here we will register our repository for dpandancy injection. 
 			// We are linking here the contrut IEmployeeRepository with concrete implementation
-			services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
-
+			//services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+			services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
 			{
